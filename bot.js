@@ -3,6 +3,32 @@ var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
 
+//Copycat code
+
+var bot = require('fancy-groupme-bot');
+var util = require('util');
+
+function copy() {
+  var mybot = bot(CONFIG);
+ 
+mybot.on('botRegistered', function(b) {
+  console.log("I am registered");
+  b.message("WHAT UP BRO?");
+});
+ 
+mybot.on('botMessage', function(b, message) {
+  console.log("I got a message, fyi");
+  if (message.name != b.name) {
+    b.message(message.name + " said " + message.text);
+  }
+});
+ 
+console.log("i am serving");
+mybot.serve(8000);
+}
+
+//End Copycat Code
+
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/;
